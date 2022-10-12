@@ -10,9 +10,7 @@ function getComputerChoice() {
     }
 }
 function playRound(playerSelection = "pS", computerSelection = "cS") {
-    let pS = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()
-    playerSelection = pS
-
+    
     if (playerSelection === computerSelection) {
         console.log("It's a tie")
         return
@@ -36,8 +34,12 @@ function winCase(computerSelection) {
     }
 }
 
+function caseFix(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+}
 
-const playerSelection = prompt("Enter Choice: ")
+
+const playerSelection = caseFix(prompt("Enter Choice: "))
 const computerSelection = getComputerChoice()
 
 playRound(playerSelection, computerSelection)
