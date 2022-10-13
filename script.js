@@ -18,8 +18,10 @@ function playRound(playerSelection = "pS", computerSelection = "cS") {
 
     if (playerSelection === winCase(computerSelection)) {
         console.log("You Win! "+playerSelection+" beats "+computerSelection)
+        scorePlayer++
     } else {
         console.log("You Lose! "+computerSelection+" beats "+playerSelection)
+        scoreComputer++
     }
 }
 
@@ -38,8 +40,21 @@ function caseFix(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }
 
+let scoreComputer = 0, scorePlayer = 0
+let winner = ""
 
-const playerSelection = caseFix(prompt("Enter Choice: "))
-const computerSelection = getComputerChoice()
+function game() {
+    for(let i=1; i<=5; i++) {
+        console.log("========== Round "+i+" ==========")
+        const playerSelection = caseFix(prompt("Enter Choice: "))
+        const computerSelection = getComputerChoice()
+        playRound(playerSelection, computerSelection)
+    }
+    
+    if(scorePlayer === scoreComputer) winner = "No one"
+    else if(scorePlayer > scoreComputer) winner = "Player"
+    else winner = "Computer"
+    return winner    
+}
 
-playRound(playerSelection, computerSelection)
+console.log("Winner: " + game())
